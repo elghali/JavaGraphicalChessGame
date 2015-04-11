@@ -23,7 +23,6 @@ public class GraphicalBoard  extends JPanel implements MouseListener{
 	private Square selectedSquare = Square.INEXISTANT;
 
 	public GraphicalBoard(Board board){
-		super(new GridLayout(10, 10));
 		this.board = board;
 		setPreferredSize(getPreferredSize());
 		addMouseListener(this);

@@ -4,6 +4,7 @@ package gui;
 import game.Game;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,8 @@ public class ChessFrame extends JFrame {
 
 	private Action newGame, saveGame, loadGame, abandonGame, undo, redo;
 	private Game game;
+	private VictimPanel vp;
+	
 	
 	public ChessFrame() throws HeadlessException {}
 
@@ -31,7 +34,10 @@ public class ChessFrame extends JFrame {
 		setVisible(true);
 		setResizable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		vp = new VictimPanel();
 		
+		
+		add(vp, BorderLayout.EAST);
 		guiBoard.setSize(guiBoard.getPreferredSize());
 		guiBoard.paintComponent(getGraphics());
 		this.game = guiBoard.getBoard().getGame();
