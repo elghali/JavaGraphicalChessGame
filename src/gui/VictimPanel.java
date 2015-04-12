@@ -10,16 +10,25 @@ import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.geom.Rectangle2D;
+import java.util.Vector;
 
 import javax.swing.JPanel;
 
 import components.Board;
 import components.Square;
 import components.pieces.Piece;
+import components.Player;
 
 public class VictimPanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int counter=0;
+	private Vector<Piece> vP;
+	Player p;
 
 
 	public VictimPanel(){
@@ -51,24 +60,17 @@ public class VictimPanel extends JPanel {
 		Graphics g = this.getGraphics();
 		Graphics2D g2 = (Graphics2D) g;
 
+		
 		if(p != null && p.getImagePath() != ""){
 			Image i = Toolkit.getDefaultToolkit().getImage(p.getImagePath());
 			counter=Square.SQUARE_SIZE+counter;	
 			g2.drawImage(i,10, counter, null);
 
 
-
 		}
 
 
 	}
-	//	public Dimension getPreferredSize(){
-	//
-	//
-	//
-	//		
-	//		return null;
-	//	}
 
 
 }
