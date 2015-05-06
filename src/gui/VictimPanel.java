@@ -26,16 +26,17 @@ public class VictimPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int counter=0;
 	private Vector<Piece> vP;
 	Player p;
 
 
 	public VictimPanel(){
+		vP = new Vector<Piece>();
 		setPreferredSize(getPreferredSize());
 		setBounds(getVisibleRect());
-		setBackground(Color.GREEN);
+		setBackground(Color.GRAY);
 		setVisible(true);
+		
 
 	}
 
@@ -56,17 +57,26 @@ public class VictimPanel extends JPanel {
 	}
 
 	public void addVictim(Piece p){
+		vP.add(p);
+
+	}
+
+	public void redraw(){
 
 		Graphics g = this.getGraphics();
 		Graphics2D g2 = (Graphics2D) g;
 
-		
-		if(p != null && p.getImagePath() != ""){
-			Image i = Toolkit.getDefaultToolkit().getImage(p.getImagePath());
-			counter=Square.SQUARE_SIZE+counter;	
-			g2.drawImage(i,10, counter, null);
-
-
+		int counter = 0;
+		for(Piece piece : vP){
+			Component c=this.getParent();
+			Image i = Toolkit.getDefaultToolkit().getImage(piece.getImagePath());
+			if(counter<c.getHeight()){
+			g2.drawImage(i,0, counter, null);
+			}
+			else
+			{g2.drawImage(i, i.getWidth(null), counter, null);}	
+			counter += i.getHeight(null);	
+			System.out.println("OK");
 		}
 
 

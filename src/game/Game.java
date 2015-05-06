@@ -2,12 +2,16 @@ package game;
 
 import gui.ChessFrame;
 import gui.GraphicalBoard;
+
 import java.awt.Color;
+
 import javax.swing.SwingUtilities;
+
 import checker.GameStateChecker;
 import checker.SpecialMoveGenerator;
 import components.Board;
 import components.Player;
+import components.pieces.Piece;
 
 
 public class Game {
@@ -42,6 +46,11 @@ public class Game {
 		else return "Black";
 	}
 	
+	public Player getCurrentPlayer(){
+		if(isWhiteTurn) return wPlayer;
+		else return bPlayer;
+					}
+	
 	public void switchTurn() {
 		if(isWhiteTurn) isWhiteTurn = false;
 		else isWhiteTurn = true;
@@ -65,7 +74,8 @@ public class Game {
 				public void run() {	
 					
 					guiBoard.redraw();
-					
+					System.out.println("okS");
+					chessFrame.getVP().redraw();
 				}
 			};
 			SwingUtilities.invokeLater(r);
@@ -102,6 +112,7 @@ public class Game {
 		
 		setGameState(gs);
 		chessFrame.updateStatus();
+		chessFrame.getVP().redraw();
 		
 	}
 	
@@ -110,6 +121,8 @@ public class Game {
 	}
 
 	public SpecialMoveGenerator getSMG() { return smg; }
+	
+	public void requestAddTaken(Piece p){ chessFrame.requestAddVictim(p); }
 	
 }
 

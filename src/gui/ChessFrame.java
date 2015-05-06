@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+import components.pieces.Piece;
+
 public class ChessFrame extends JFrame {
 
 	private static final long serialVersionUID = 591882616190547773L;
@@ -159,6 +161,14 @@ public class ChessFrame extends JFrame {
 		if(game.getGameState() != "None")
 			status += "   ---   " + game.getGameState();
 		tp.setText(status);
+	}
+	
+	public void requestAddVictim(Piece p){
+		vp.addVictim(p);
+	}
+
+	public VictimPanel getVP() {
+		return vp;
 	}
 
 }
